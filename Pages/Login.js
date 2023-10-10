@@ -2,16 +2,18 @@ import { StatusBar } from 'expo-status-bar'
 import Input from '../Components/Input'
 import Button from '../Components/Button'
 import { Formik } from 'formik'
-import { StyleSheet, Text, View,SafeAreaView,TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View,SafeAreaView,TouchableOpacity, ImageBackground } from 'react-native'
 import { loginValidationSchema } from '../validations/Form'
+
+const image= require('../assets/image/capa.jpg');
 
 export default function Login({navigation}) {
   return (
     
-    
-<SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}>
+    <ImageBackground souce={{uri: '../assets/images/capa.jpg'}} resizeMethod='cover'>
 <View style={styles.containerWrapper}>
-<Formik validationSchema={loginValidationSchema} initialValues={{Email: '', Password:''}} onSubmit={(valures)=> alert(values)}>
+<Formik validationSchema={loginValidationSchema} initialValues={{Email: '', Password:''}} onSubmit={(valures)=> navigation.navigate('Home')}>
   {
 ({
  handleChange,
@@ -41,7 +43,9 @@ export default function Login({navigation}) {
           <Text style={styles.containerResetPasswordLinkContentText}>Esqueceu sua senha?</Text>
         </TouchableOpacity>
       </View>
+      </ImageBackground>
     </SafeAreaView>
+    
   )
 }
 
@@ -50,13 +54,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F95A5F',
     paddingTop: '3%',
-    paddingLeft: '5%',
-    paddingRight: '5%',
+    
     gap: 30
   },
   containerWrapper: {
     flex: 1,
     width: '100%',
+    paddingLeft: '5%',
+    paddingRight: '5%',
   },
   containerInput:{
     paddingTop: 18,
@@ -79,5 +84,8 @@ const styles = StyleSheet.create({
   },
   textError: {
     color: 'red'
+},
+image:{
+  flex:1,
 }
 })
